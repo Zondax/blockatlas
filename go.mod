@@ -6,6 +6,7 @@ go 1.15
 // +heroku install ./cmd/...
 
 require (
+	9fans.net/go v0.0.2 // indirect
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/btcsuite/btcutil v1.0.2
 	github.com/deckarep/golang-set v1.7.1
