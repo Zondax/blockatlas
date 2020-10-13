@@ -98,6 +98,7 @@ func getAllHandlers() blockatlas.Platforms {
 		coin.Near().Handle:         near.Init(config.Default.Near.API),
 		coin.Elrond().Handle:       elrond.Init(coin.EGLD, config.Default.Elrond.API),
 		coin.Filecoin().Handle:     filecoin.Init(config.Default.Filecoin.API, config.Default.Filecoin.Explorer),
+		coin.Oasis().Handle:        oasis.Init(coin.ROSE, GetApiVar(coin.ROSE)),
 	}
 }
 
