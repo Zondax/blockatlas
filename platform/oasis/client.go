@@ -7,6 +7,8 @@ import (
 
 	"github.com/coinbase/rosetta-sdk-go/fetcher"
 	"github.com/coinbase/rosetta-sdk-go/types"
+	"github.com/oasisprotocol/oasis-core/go/common/crypto/signature"
+	"github.com/oasisprotocol/oasis-core/go/staking/api"
 )
 
 // Client base struct
@@ -65,4 +67,18 @@ func (c *Client) GetBlockByNumber(num int64) (*types.Block, *fetcher.Error) {
 	logger.Debug("Current Block: %s\n", types.PrettyPrintStruct(block))
 
 	return block, nil
+}
+
+// GetAddressesFromXpub method
+func (c *Client) GetAddressesFromXpub(xpub string) ([]string, error) {
+	var xpubArray signature.PublicKey
+	copy(xpubArray[:], xpub)
+
+	address := api.NewAddress(xpubArray)
+	addressString := string(address[:])
+
+	addresses := make([]string, 0)
+	addresses = append(addresses, addressString)
+
+	return addresses, nil
 }
