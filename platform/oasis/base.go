@@ -1,7 +1,7 @@
 package oasis
 
 import (
-	"github.com/coinbase/rosetta-sdk-go/fetcher"
+	"github.com/hasura/go-graphql-client"
 	"github.com/trustwallet/blockatlas/coin"
 )
 
@@ -14,7 +14,7 @@ type Platform struct {
 // Init Required method
 func Init(coin uint, api string) *Platform {
 	p := &Platform{
-		client: Client{fetcherClient: fetcher.New(api)},
+		client: Client{graphqlClient: graphql.NewClient(api, nil)},
 	}
 	return p
 }

@@ -8,7 +8,7 @@ import (
 func (p *Platform) CurrentBlockNumber() (int64, error) {
 	block, err := p.client.GetCurrentBlock()
 	if err != nil {
-		return 0, err.Err
+		return 0, err
 	}
 	return block, nil
 }
@@ -17,7 +17,7 @@ func (p *Platform) CurrentBlockNumber() (int64, error) {
 func (p *Platform) GetBlockByNumber(num int64) (*blockatlas.Block, error) {
 	srcBlock, err1 := p.client.GetBlockByNumber(num)
 	if err1 != nil {
-		return nil, err1.Err
+		return nil, err1
 	}
 
 	txs, err2 := p.NormalizeTransactions(srcBlock)
