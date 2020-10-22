@@ -6,16 +6,17 @@ import (
 )
 
 // NormalizeTransactions method
-func (p *Platform) NormalizeTransactions(block *types.Block) ([]blockatlas.Tx, error) {
+func (p *Platform) NormalizeTransactions(block *Block) ([]blockatlas.Tx, error) {
 
-	txs := make([]blockatlas.Tx, 0)
+	/*txs := make([]blockatlas.Tx, 0)
 	for _, srcTx := range block.Transactions {
 		tx := p.NormalizeTransaction(srcTx)
 		if tx != nil {
 			txs = append(txs, *tx)
 		}
 	}
-	return txs, nil
+	return txs, nil*/
+	return nil, nil
 }
 
 // NormalizeTransaction method
