@@ -30,15 +30,15 @@ func (c *Client) GetCurrentBlock() (int64, error) {
 }
 
 // GetBlockByNumber method
-func (c *Client) GetBlockByNumber(num int64) (*Block, error) {
+func (c *Client) GetBlockByNumber(num int64) (*[]Transaction, error) {
 	ctx := context.Background()
 
-	var blk BlockByHeight
+	var trxs TransactionsByHeight
 	variables := map[string]interface{}{
 		"height": graphql.Int(num),
 	}
 
-	err := c.graphqlClient.Query(ctx, &blk, variables)
+	err := c.graphqlClient.Query(ctx, &trxs, variables)
 	if err != nil {
 		return nil, err
 	}
@@ -48,7 +48,29 @@ func (c *Client) GetBlockByNumber(num int64) (*Block, error) {
 		return nil, err
 	}
 
-	return &blk.Blocks[0], nil
+	return &trxs.Transactions, nil
+}
+
+// GetTrxOfAddress method
+func (c *Client) GetTrxOfAddress(address string) (*[]Transaction, error) {
+	ctx := context.Background()
+
+	var result TransactionsByAddress
+	variables := map[string]interface{}{
+		"address": graphql.String(address),
+	}
+
+	err := c.graphqlClient.Query(ctx, &result, variables)
+	if err != nil {
+		return nil, err
+	}
+
+	if err != nil {
+		logger.Fatal(err)
+		return nil, err
+	}
+
+	return &result.Transactions, nil
 }
 
 // GetAddressesFromXpub method
