@@ -9,15 +9,10 @@ require (
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/btcsuite/btcutil v1.0.2
 	github.com/deckarep/golang-set v1.7.1
-	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/getsentry/raven-go v0.2.0
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-gonic/gin v1.6.3
-	github.com/golang/protobuf v1.4.2 // indirect
-	github.com/gopherjs/gopherjs v0.0.0-20190910122728-9d188e94fb99 // indirect
 	github.com/itchyny/timefmt-go v0.1.1
-	github.com/json-iterator/go v1.1.10 // indirect
-	github.com/kr/pretty v0.2.0 // indirect
 	github.com/mitchellh/mapstructure v1.4.1
 	github.com/mr-tron/base58 v1.2.0
 	github.com/opencontainers/runc v1.0.0-rc9 // indirect
@@ -25,7 +20,6 @@ require (
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/prometheus/client_golang v0.9.4
 	github.com/sirupsen/logrus v1.7.0
-	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/spf13/viper v1.7.1
 	github.com/streadway/amqp v1.0.0
 	github.com/stretchr/testify v1.7.0
