@@ -1,5 +1,7 @@
 package oasis
 
+import "math/big"
+
 type Block struct {
 	Height    int64  `json:"height"`
 	Hash      string `json:"hash"`
@@ -8,6 +10,13 @@ type Block struct {
 
 type BlockRequest struct {
 	BlockIdentifier int64 `json:"block_identifier"`
+}
+
+type DelegationsForRequest struct {
+	Owner string `json:"owner"`
+}
+type DebondingDelegationsForRequest struct {
+	Owner string `json:"owner"`
 }
 
 type Transaction struct {
@@ -21,6 +30,45 @@ type Transaction struct {
 	Success  bool   `json:"success"`
 	ErrorMsg string `json:"error_message,omitempty"`
 	Sequence uint64 `json:"sequence"`
+}
+
+type Validator struct {
+	ID                    string  `json:"id"`
+	VotingPower           int64   `json:"voting_power"`
+	Name                  string  `json:"name"`
+	URL                   string  `json:"url"`
+	Email                 string  `json:"email"`
+	Keybase               string  `json:"keybase"`
+	Twitter               string  `json:"twitter"`
+	EffectiveAnnualReward float64 `json:"effective_annual_reward"`
+}
+
+type Validators struct {
+	Validators []Validator `json:"validators"`
+}
+
+type ConsensusParams struct {
+	DebondingInterval   uint64 `json:"debonding_interval"`
+	MinDelegationAmount string `json:"min_delegation"`
+}
+
+type DelegationsFor struct {
+	List map[string]Delegation `json:"delegations"`
+}
+
+type DebondingDelegationsFor struct {
+	List map[string][]DebondingDelegation `json:"debonding_delegations"`
+}
+
+// Delegation is a delegation descriptor.
+type Delegation struct {
+	Shares string `json:"shares"`
+}
+
+// DebondingDelegation is a debonding delegation descriptor.
+type DebondingDelegation struct {
+	Shares        big.Int `json:"shares"`
+	DebondEndTime uint64  `json:"debond_end"`
 }
 
 type TransactionsByAddressRequest struct {

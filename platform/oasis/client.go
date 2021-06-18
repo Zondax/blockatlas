@@ -40,3 +40,47 @@ func (c *Client) GetTrxOfAddress(address string) (*[]Transaction, error) {
 
 	return &txs, nil
 }
+
+func (c *Client) GetValidators() (*Validators, error) {
+	var validators Validators
+
+	err := c.Post(&validators, "/validators", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return &validators, nil
+}
+
+func (c *Client) GetConsensusParams() (*ConsensusParams, error) {
+	var consensusParams ConsensusParams
+
+	err := c.Post(&consensusParams, "/consensus/params", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return &consensusParams, nil
+}
+
+func (c *Client) GetDelegationsFor(address string) (*DelegationsFor, error) {
+	var data DelegationsFor
+
+	err := c.Post(&data, "/delegations", DelegationsForRequest{Owner: address})
+	if err != nil {
+		return nil, err
+	}
+
+	return &data, nil
+}
+
+func (c *Client) GetUnbondingDelegationsFor(address string) (*DebondingDelegationsFor, error) {
+	var data DebondingDelegationsFor
+
+	err := c.Post(&data, "/delegations/debonding", DebondingDelegationsForRequest{Owner: address})
+	if err != nil {
+		return nil, err
+	}
+
+	return &data, nil
+}
